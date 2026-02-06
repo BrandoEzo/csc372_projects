@@ -1,0 +1,236 @@
+/* Brandon Ezovski, 2/4/2026: stylesheet for all pages of the URI Gaming Club site */
+body {
+    font-family: Arial, sans-serif;
+    font-display: auto;
+    background-color: #b1b5f9;
+}
+
+p.center{
+    text-align: center;
+}
+
+/* h1s will be in Impact font (fantasy backup) with a larger size */
+h1{
+    font-family: Impact, fantasy;
+    font-size: clamp(32px, 5%, 55px);
+    text-align: center;
+    color: #0e014b
+}
+
+/* link styling */
+a {
+    color: #540303;
+}
+a:visited{
+    color: #000000;
+}
+a:hover{
+    color: #003b03;
+}
+
+
+/*Image*/
+img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 10px;
+}
+
+div.welcomeImages{
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+div.welcomeImages img {
+  width: clamp(400px, 45%, 800px);
+  height: auto;
+  margin: 10px;
+}
+
+
+/*div elements for header, left align, and individual sections */
+div.header{
+  overflow:hidden;
+  background: #011c46;
+  padding: 5px;
+}
+.header a{
+  float: left;
+  color:#ffd500;
+  font-family:verdana;
+  font-size:18px;
+  text-decoration:none;
+  padding:12px;
+}
+
+.header a:hover{
+  color:rgb(155, 5, 197);
+}
+/*hilight current page within header*/
+a.active {
+  color:rgb(8, 95, 101);
+  background-color: rgb(255, 238, 0);
+}
+div.header-right{
+  float:right;
+  margin:12px;
+}
+
+div.all-content{
+    overflow:hidden;
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+/*left column to wrap full page of content*/
+div.left-col{
+    float:left;
+    padding-left:20px;
+    padding-right:20px;
+    width: 70%;
+}
+
+div.right-col{
+    float:right;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*card divider to split up individual sections*/
+div.card{
+  background-color:rgb(144, 153, 195);
+  padding:20px;
+  margin:20px;
+}
+
+div.interestCard{
+  background-color:rgb(144, 153, 195);
+  padding:20px;
+  margin:20px;
+}
+
+.interestImage {
+  float: center;
+  width:200px;
+}
+
+
+/*for tablets and medium screens*/
+@media only screen and (max-width: 900px) {
+  h1 {
+    font-size: clamp(28px, 4.5%, 45px);
+  }
+  
+  h2 {
+    font-size: clamp(20px, 3.5%, 32px);
+  }
+
+  img{
+    max-width: 100%;
+    height:auto;
+  }
+
+  div.all-content{
+    overflow:hidden;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  div.left-col {
+    float: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+  }
+  div.right-col {
+    float: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+  }
+
+  
+  div.card{
+    padding: 15px;
+    margin: 15px 10px;
+  }
+  
+
+}
+
+/*for small screens*/
+@media only screen and (max-width: 600px) {
+  div.header a {
+    float:none;
+    display:block;
+    text-align: left;
+    padding: 8px;
+    font-size: 16px;
+  }
+
+  div.header-right{
+    float:none;
+  }
+
+  div.left-col{
+    float: none;
+    width:100%;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  div.right-col{
+    float: none;
+    width:100%;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  div.all-content{
+    overflow:hidden;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  div.card{
+    padding: 10px;
+    margin: 10px 5px;
+    font-size: 16px;
+  }
+  
+  h1 {
+    font-size: clamp(24px, 6%, 36px);
+  }
+  
+  h2 {
+    font-size: clamp(18px, 4.5%, 28px);
+  }
+  
+  h3 {
+    font-size: clamp(16px, 4%, 24px);
+  }
+
+  img{
+    width: clamp(100px, 45%, 200px);
+    max-width: 100%;
+    height:auto;
+  }
+  
+  div.welcomeImages img {
+    width: clamp(150px, 80%, 300px);
+    height: auto;
+    margin: 10px;
+  }
+  
+  ol, ul {
+    padding-left: 20px;
+  }
+  
+}
