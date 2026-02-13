@@ -99,11 +99,36 @@ div.right-col{
     padding-right: 20px;
 }
 
+div.center-col{
+    float:center;
+    padding-left:20px;
+    padding-right:20px;
+    width: 70%;
+}
+
 /*card divider to split up individual sections*/
 div.card{
   background-color:rgb(144, 153, 195);
   padding:20px;
   margin:20px;
+}
+
+/* Responsive iframe container */
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 div.interestCard{
