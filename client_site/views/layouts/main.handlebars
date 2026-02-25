@@ -1,0 +1,22 @@
+<!--Brandon Ezovski, 2/25/26: default layout for each page of the site, including the css style sheet, html, head and body tags, and header-->
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{{title}}}</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="header">
+			<a class="link" href="/"><img id="logo" src="/images/logo.png" alt="URI Gaming Club Logo" fetchpriority="high" width="192" height="108"></a>
+			<div class="header-right" >
+				<a class="{{#if (eq activePage 'home')}}active{{else}}link{{/if}}" href="/">Home</a>
+                <a class="{{#if (eq activePage 'events')}}active{{else}}link{{/if}}" href="/events">Events</a>
+                <a class="{{#if (eq activePage 'calendar')}}active{{else}}link{{/if}}" href="/calendar">Calendar</a>
+			</div>
+		</div>
+    {{{body}}}
+  </body>
+</html>

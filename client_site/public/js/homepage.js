@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (filename === 'interested_question_button.png') {
             // user is selecting interest
             interested = (interested || 0) + 1;
-            image.src = 'images/interested_button.png';
+            image.src = '/images/interested_button.png';
         } else {
             // user is deselecting; don't allow negative counts
             interested = Math.max(0, (interested || 0) - 1);
-            image.src = 'images/interested_question_button.png';
+            image.src = '/images/interested_question_button.png';
         }
         header.textContent = 'Currently interested: ' + interested;
     });

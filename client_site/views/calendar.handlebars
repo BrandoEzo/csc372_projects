@@ -1,0 +1,36 @@
+<!--Brandon Ezovski, 2/25/26: handlebars view of the calendar page, featuring all the same things that were there originally-->
+
+<h1>URI Gaming Club Calendar</h1>
+    <div class="center-col">
+      <p class="center">Welcome to the URI Gaming Club Calendar! View our upcoming events!</p>
+      <div class="card">
+        <div class="iframe-container">
+          <iframe src="https://calendar.google.com/calendar/embed?src=c_9ccdde5bfcfcd22d796b1c739696eaf16c5ddffcef45b6beb55b5fb6c8998507%40group.calendar.google.com&ctz=UTC" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Previous Tournament Results</h3>
+        <label for="tournamentSelect">Select a tournament:</label>
+        <select id="tournamentSelect">
+          <option value="">-- Choose a tournament --</option>
+          <option value="uri-rhody-rumble-75">URI Rhody Rumble 75</option>
+          <option value="uri-rhody-rumble-74">URI Rhody Rumble 74</option>
+          <option value="uri-rhody-rumble-73">URI Rhody Rumble 73</option>
+          <option value="uri-rhody-rumble-72">URI Rhody Rumble 72</option>
+          <option value="uri-rhody-rumble-71">URI Rhody Rumble 71</option>
+          <option value="uri-rhody-rumble-70">URI Rhody Rumble 70</option>
+          <option value="uri-rhody-rumble-69">URI Rhody Rumble 69</option>
+          <option value="uri-rhody-rumble-68">URI Rhody Rumble 68</option>
+          <option value="uri-rhody-rumble-67">URI Rhody Rumble 67</option>
+          <option value="uri-rhody-rumble-66-1">URI Rhody Rumble 66</option>
+          <option value="uri-rhody-rumble-65">URI Rhody Rumble 65</option>
+          <option value="uri-rhody-rumble-64">URI Rhody Rumble 64</option>
+          <option value="uri-rhody-rumble-63">URI Rhody Rumble 63</option>
+          <option value="uri-rhody-rumble-62">URI Rhody Rumble 62</option>
+          <option value="uri-rhody-rumble-61">URI Rhody Rumble 61</option>
+        </select>
+        <ul id="tournamentResults" style="display: none;">
+        </ul>
+      </div>
+    </div>
+    <script src="/js/startgg-api.js"></script>
