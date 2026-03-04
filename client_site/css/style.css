@@ -113,6 +113,12 @@ div.card{
   margin:20px;
 }
 
+div.special{
+  background-color:rgb(190, 144, 195);
+  padding:20px;
+  margin:20px;
+}
+
 /* Responsive iframe container */
 .iframe-container {
   position: relative;
