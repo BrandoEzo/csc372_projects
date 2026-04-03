@@ -3,7 +3,7 @@
 //Brandon Ezovski, 4/1/2026, updated to add data to mySQL database after form is submitted and validated
     session_start();
     include 'php/validateForm.php';
-    include 'php/database-connection.php';
+    //include 'php/database-connection.php'; //this is commented out for now until I am on anything but school wifi
     
     //function to check whether an email already exists in the database, returns true if email exists and false if it doesn't
     function check_data(PDO $pdo, $email){

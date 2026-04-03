@@ -1,5 +1,5 @@
 <?php 
-    include 'php/database-connection.php';
+    //include 'php/database-connection.php';//this is commented out for now until I am on anything but school wifi
     function get_events(PDO $pdo) {
 		                                                    // SQL query to retrieve event information based on the event ID
 		$sql = "SELECT * 
