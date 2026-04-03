@@ -1,5 +1,23 @@
-<?php include 'php/events.php';?>
+<?php 
+    include 'php/database-connection.php';
+    function get_events(PDO $pdo) {
+		                                                    // SQL query to retrieve event information based on the event ID
+		$sql = "SELECT * 
+			FROM Event";
+			                        // :id is a placeholder for value provided later 
+		                                                    // It's a parameterized query that helps prevent SQL injection attacks and ensures safer interaction with the database
 
+		                                                    // Execute the SQL query using the pdo function and fetch the result
+		$events = pdo($pdo, $sql)->fetchAll();		// Associative array where 'id' is the key and $id is the value. Used to bind the value of $id to the placeholder :id in SQL query.
+
+		return $events;                                        // Return the event information (associative array)
+	}
+
+	$events = get_events($pdo);  
+    
+    ?>
+
+<!--Update 4/1/2026: Updated to make use of MySQL database for event storage instead of events.php-->
 <!--Brandon Ezovski, 3/4/26, Event page remade in php with dynamic content.-->
 
 <!DOCTYPE html>
@@ -19,7 +37,7 @@
 				<a class="link" href="homepage.html">Home</a>
                 <a class="active" href="eventsPage.php">Events</a>
                 <a class="link" href="calendar.html">Calendar</a>
-                <a class="link" href="interestForm.php">Interest Form</a>
+                <a class="link" href="interestForm.php">Feedback Form</a>
 			</div>
 		</div>
 
@@ -27,54 +45,37 @@
     <p class="center">Welcome to the URI Gaming Club Events Page!</p>
     
     <div class="left-col">
-        <h2>Weekly Events</h2>
+        <?php 
+        if(empty($events)){ ?>
+            <p>Sorry, there are no events to display at this time. Please check back later!</p>
+        <?php } ?>
+        <?php foreach($events as $event): ?>
         <?php  for($i = 0; $i < sizeof($events); $i++) {?>
-            <div class="<?= $events[$i]->cardType() ?>">       
+            <div class="<?= $event['competition'] == 1 ? "special" : "card" ?>">       
                 <h3>
-                    <?= $events[$i]->name ?> 
+                    <?= $event['name'] ?> 
                 </h3>
+                <h4>
+                    <?= $event['special'] == 1 ? "<em>Special Event</em>" : "<em>Weekly Event</em>" ?>
+                </h4>
                 <p>
-                    <?= $events[$i]->description ?>
+                    <?= $event['description'] ?>
                 </p>
                 <ul>
                     <li>
-                        <?= $events[$i]->location?>
+                        <?= $event['location']?>
                     </li>
                     <li>
-                        <?= $events[$i]->day?>, starts at <?=$events[$i]->time ?>
+                        <?= $event['day']?>, starts at <?=$event['time'] ?>
                     </li>
                     <li>
-                        <?= $events[$i]->averageAttendees ?> average attendees
+                        <?= $event['averageAttendees'] ?> average attendees
                     </li>
-                    <li>Price of Admission: <?= $events[$i]->checkPrice() ?> </li>
+                    <li>Price of Admission: <?= $event['price'] == 0 ? "Free" : "$" . $event['price'] ?> </li>
                 </ul>
                 </div>
             <?php } ?>
-    
-            <h2>Special Events</h2>
-
-            <?php  for($i = 0; $i < sizeof($spEvents); $i++) {?>
-            <div class="<?= $spEvents[$i]->cardType() ?>">       
-                <h3>
-                    <?= $spEvents[$i]->name ?> 
-                </h3>
-                <p>
-                    <?= $spEvents[$i]->description ?>
-                </p>
-                <ul>
-                    <li>
-                        <?= $spEvents[$i]->location?>
-                    </li>
-                    <li>
-                        <?= $spEvents[$i]->day?>, starts at <?=$spEvents[$i]->time ?>
-                    </li>
-                    <li>
-                        <?= $spEvents[$i]->averageAttendees ?> average attendees
-                    </li>
-                    <li>Price of Admission: <?= $spEvents[$i]->checkPrice() ?> </li>
-                </ul>
-                </div>
-            <?php } ?>
+                <?php endforeach; ?>
     <p>*pink event color designates an event as a competition/tournament. These events are open to the public as well as URI students.</p>
 </body>
 </html>

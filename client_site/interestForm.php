@@ -1,9 +1,61 @@
 <?php
 //Brandon Ezovski, 3/13/2026, new page featuring an interest form for assigmnent 7. Stores some data in cookies and other in session storage, see code comments for details.
-
+//Brandon Ezovski, 4/1/2026, updated to add data to mySQL database after form is submitted and validated
     session_start();
     include 'php/validateForm.php';
+    include 'php/database-connection.php';
     
+    //function to check whether an email already exists in the database, returns true if email exists and false if it doesn't
+    function check_data(PDO $pdo, $email){
+        $sql = "SELECT email FROM Feedback WHERE email = :email";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':email' => $email]);
+        return $stmt->fetch() !== false;
+    }
+
+    //function to insert data into database
+    function post_data(PDO $pdo, $data) {
+		                                                    // SQL query to retrieve event information based on the event ID
+		$sql = "INSERT INTO Feedback
+        (firstName, lastName, age, email, student, interestedTournaments, interestedGameNight, interestedClubroom, interestedOther, feedback) 
+			VALUES (:fname, :lname, :age, :email, :student, :tournament, :gameNight, :room, :other, :hear)";
+		pdo($pdo, $sql, [
+			':fname' => $data['fname'],
+			':lname' => $data['lname'],
+			':age' => $data['age'],
+			':email' => $data['email'],
+			':student' => $data['student'],
+			':tournament' => isset($data['event']) && in_array('tournament', $data['event']) ? 1 : 0,
+			':gameNight' => isset($data['event']) && in_array('gameNight', $data['event']) ? 1 : 0,
+			':room' => isset($data['event']) && in_array('room', $data['event']) ? 1 : 0,
+			':other' => isset($data['event']) && in_array('other', $data['event']) ? 1 : 0,
+			':hear' => $data['hear']
+		]);
+    }
+
+    //function to update data in database if email already exists
+    function update_data(PDO $pdo, $data) {
+        $sql = "UPDATE Feedback SET firstName = :fname, lastName = :lname, age = :age, student = :student, interestedTournaments = :tournament, interestedGameNight = :gameNight, interestedClubroom = :room, interestedOther = :other, feedback = :hear WHERE email = :email";
+        pdo($pdo, $sql, [
+            ':fname' => $data['fname'],
+            ':lname' => $data['lname'],
+            ':age' => $data['age'],
+            ':email' => $data['email'],
+            ':student' => $data['student'],
+            ':tournament' => isset($data['event']) && in_array('tournament', $data['event']) ? 1 : 0,
+            ':gameNight' => isset($data['event']) && in_array('gameNight', $data['event']) ? 1 : 0,
+            ':room' => isset($data['event']) && in_array('room', $data['event']) ? 1 : 0,
+            ':other' => isset($data['event']) && in_array('other', $data['event']) ? 1 : 0,
+            ':hear' => $data['hear']
+        ]);
+    }
+
+    //function to delete data if user requests it
+    function delete_data(PDO $pdo, $email){
+        $sql = "DELETE FROM Feedback WHERE email = :email";
+        pdo($pdo, $sql, [':email' => $email]);
+    }
+
     //handle clearing session
     if(isset($_POST["clear"]) && $_POST["clear"] == "Clear Session") {
         session_destroy();
@@ -39,7 +91,7 @@
         $responses["age"] = htmlspecialchars($_POST["age"] ?? "");
         $responses["email"] = htmlspecialchars($_POST["email"] ?? "");
         $responses["student"] = $_POST["student"] ?? "";
-        
+        //
         // really dumb workaround I had to do because it wasn't saving the checkbox responses on reload/submit. Took me way too much time and googling :(
         $events = array();
         $raw = file_get_contents('php://input');
@@ -52,27 +104,27 @@
         $responses["hear"] = htmlspecialchars($_POST["hear"] ?? "");
         //validate each input with corresponding function
         if(!checkName($responses["fname"])){
-            $errorMsgs["fname"] = "First name must be between 2 and 50 characters.";
+            $errorMsgs["fname"] = "First name must be between 2 and 50 characters.<br>";
             $responses["fname"] = "";
         }
         if(!checkName($responses["lname"])){
-            $errorMsgs["lname"] = "Last name must be between 2 and 50 characters.";
+            $errorMsgs["lname"] = "Last name must be between 2 and 50 characters.<br>";
             $responses["lname"] = "";
         }
         if(!checkAge($responses["age"])){
-            $errorMsgs["age"] = "Age must be a number between 10 and 120.";
+            $errorMsgs["age"] = "Age must be a number between 10 and 120.<br>";
             $responses["age"] = "";
         }
         if(!checkName($responses["email"])){
-            $errorMsgs["email"] = "Email must be between 2 and 50 characters.";
+            $errorMsgs["email"] = "Email must be between 2 and 50 characters.<br>";
             $responses["email"] = "";
         }
         if(!checkYesNo($responses["student"])){
-            $errorMsgs["student"] = "Please select whether you are a URI student.";
+            $errorMsgs["student"] = "Please select whether you are a URI student.<br>";
             $responses["student"] = "";
         }
         if(!checkText($responses["hear"])){
-            $errorMsgs["hear"] = "Response must be between 2 and 100 characters.";
+            $errorMsgs["hear"] = "Response must be between 2 and 100 characters.<br>";
             $responses["hear"] = "";
         }
         //combine all error messages using implode() to determine whether the form is valid
@@ -88,13 +140,32 @@
             $_SESSION["student"] = $responses["student"];
             $_SESSION["event"] = $responses["event"];
             $_SESSION["hear"] = $responses["hear"];
+            //check if data has already been posted to prevent duplicate entries
+            if(!check_data($pdo, $responses["email"])){
+                //submit form to database using function
+                post_data($pdo, $responses);
+            }
+            else{
+                update_data($pdo, $responses);
+            }
         }
         else{
-            $message = "Please correct the following errors: " . $allErrors;
+            $message = "Please correct the following errors:<br>" . $allErrors;
         }
         //display message at top of page (done in html header section)
     }
-    
+    //handle feedback removal request
+    $feedbackmessage = "";
+    if(isset($_POST["remove"]) && $_POST["remove"] == "Remove Feedback"){
+        $emailToRemove = htmlspecialchars($_POST["remove_email"] ?? "");
+        if(check_data($pdo, $emailToRemove)){
+            delete_data($pdo, $emailToRemove);
+            $feedbackessage = "Your feedback has been removed.";
+        }
+        else{
+            $feedbackmessage = "No feedback found for that email address.";
+        }
+    }
 
 ?>
 
@@ -105,7 +176,7 @@
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URI Gaming Club Interest Form</title>
+    <title>URI Gaming Club Feedback Form</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
@@ -117,16 +188,18 @@
             <a class="link" href="homepage.html">Home</a>
             <a class="link" href="eventsPage.php">Events</a>
             <a class="link" href="calendar.html">Calendar</a>
-            <a class="active" href="interestForm.php">Interest Form</a>
+            <a class="active" href="feedbackForm.php">Feedback Form</a>
         </div>
     </div>
 
-    <h1>URI Gaming Club Interest Form</h1>
-    <p class="center">Thank you for expressing interest in joining our club! Please fill out the form below:</p>
+    <h1>URI Gaming Club Feedback Form</h1>
+    <p class="center">We'd love to hear your thoughts about our club! Please fill out the form below:</p>
     <div class="left-col">
         
         <div class="card">
-            <h2><?php echo $message; ?></h2>
+            <div class="<?php echo (!empty(trim($message))) ? 'special' : 'card'; ?>">
+                <h2><?php echo (!empty(trim($message))) ? $message : 'Feedback Form'; ?></h2>
+            </div>
             <form action="" method="POST">
                 <label for="fname">First name:</label><br>
                 <input type="text" id="fname" name="fname" value="<?php echo $responses["fname"]; ?>"><br>
@@ -156,7 +229,7 @@
                 <input type="checkbox" id="other" name="event" value="other" <?php if(is_array($responses["event"]) && in_array("other", $responses["event"])) echo "checked"; ?>>
                 <label for="other">Other</label><br>
                 <br>
-                <label for="hear">How did you hear about us?</label><br>
+                <label for="hear">Is there anything else you'd like to see from us?</label><br>
                 <textarea id="hear" name="hear"><?php echo $responses["hear"]; ?></textarea><br>
                 <br>
                 <input type="submit" name="submit" value="Submit">
@@ -164,6 +237,15 @@
             <form action="" method="POST" style="display:inline;">
                 <input type="submit" name="clear" value="Clear Session">
             </form>
+        </div>
+        <div class="card">
+            <h4>Feedback Removal Request</h4>
+            <p>If you would like to have your feedback removed from our database, please enter your email address below and click the button:</p>
+            <form action="" method="POST">
+                <input type="email" name="remove_email" placeholder="Enter your email" required>
+                <input type="submit" name="remove" value="Remove Feedback">
+            </form>
+            <p><?php echo $feedbackmessage; ?></p>
         </div>
     </div>
   </body>
