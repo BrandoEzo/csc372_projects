@@ -46,7 +46,7 @@ function checkCheckboxOption($values){
 }
 
 function checkText($value){
-    if(strlen($value) > 1 && strlen($value) < 100){
+    if(strlen($value) > 1 && strlen($value) < 500){
         return true;
     }
     return false;
