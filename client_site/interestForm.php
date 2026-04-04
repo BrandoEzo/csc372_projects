@@ -3,7 +3,7 @@
 //Brandon Ezovski, 4/1/2026, updated to add data to mySQL database after form is submitted and validated
     session_start();
     include 'php/validateForm.php';
-    //include 'php/database-connection.php'; //this is commented out for now until I am on anything but school wifi
+    include 'php/database-connection.php'; //this is commented out for now until I am on anything but school wifi
     
     //function to check whether an email already exists in the database, returns true if email exists and false if it doesn't
     function check_data(PDO $pdo, $email){
@@ -160,7 +160,7 @@
         $emailToRemove = htmlspecialchars($_POST["remove_email"] ?? "");
         if(check_data($pdo, $emailToRemove)){
             delete_data($pdo, $emailToRemove);
-            $feedbackessage = "Your feedback has been removed.";
+            $feedbackmessage = "Your feedback has been removed!";
         }
         else{
             $feedbackmessage = "No feedback found for that email address.";
@@ -239,13 +239,14 @@
             </form>
         </div>
         <div class="card">
-            <h4>Feedback Removal Request</h4>
-            <p>If you would like to have your feedback removed from our database, please enter your email address below and click the button:</p>
+            <h3>Feedback Removal Request</h3>
+            <div class="<?php echo (!empty(trim($feedbackmessage))) ? 'special' : 'card'; ?>">
+                <h4><?php echo (!empty(trim($feedbackmessage))) ? $feedbackmessage : "If you would like to have your feedback removed from our database, please enter your email address below and click the button:"; ?></h4>
+            </div>
             <form action="" method="POST">
                 <input type="email" name="remove_email" placeholder="Enter your email" required>
                 <input type="submit" name="remove" value="Remove Feedback">
             </form>
-            <p><?php echo $feedbackmessage; ?></p>
         </div>
     </div>
   </body>

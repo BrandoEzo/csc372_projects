@@ -1,12 +1,10 @@
 <?php 
-    //include 'php/database-connection.php';//this is commented out for now until I am on anything but school wifi
+    include 'php/database-connection.php';//this is commented out for now until I am on anything but school wifi
     function get_events(PDO $pdo) {
 		                                                    // SQL query to retrieve event information based on the event ID
 		$sql = "SELECT * 
-			FROM Event";
-			                        // :id is a placeholder for value provided later 
-		                                                    // It's a parameterized query that helps prevent SQL injection attacks and ensures safer interaction with the database
-
+			FROM Events
+			ORDER BY name DESC";
 		                                                    // Execute the SQL query using the pdo function and fetch the result
 		$events = pdo($pdo, $sql)->fetchAll();		// Associative array where 'id' is the key and $id is the value. Used to bind the value of $id to the placeholder :id in SQL query.
 
@@ -45,16 +43,16 @@
     <p class="center">Welcome to the URI Gaming Club Events Page!</p>
     
     <div class="left-col">
+        <p>*pink event color designates an event as a competition/tournament. These events are open to the public as well as URI students.</p>
         <?php 
         if(empty($events)){ ?>
             <p>Sorry, there are no events to display at this time. Please check back later!</p>
         <?php } ?>
         <?php foreach($events as $event): ?>
-        <?php  for($i = 0; $i < sizeof($events); $i++) {?>
             <div class="<?= $event['competition'] == 1 ? "special" : "card" ?>">       
-                <h3>
+                <h2>
                     <?= $event['name'] ?> 
-                </h3>
+                </h2>
                 <h4>
                     <?= $event['special'] == 1 ? "<em>Special Event</em>" : "<em>Weekly Event</em>" ?>
                 </h4>
@@ -74,8 +72,6 @@
                     <li>Price of Admission: <?= $event['price'] == 0 ? "Free" : "$" . $event['price'] ?> </li>
                 </ul>
                 </div>
-            <?php } ?>
-                <?php endforeach; ?>
-    <p>*pink event color designates an event as a competition/tournament. These events are open to the public as well as URI students.</p>
-</body>
+        <?php endforeach; ?>
+    
 </html>

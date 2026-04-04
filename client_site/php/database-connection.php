@@ -1,7 +1,7 @@
 <?php                                             // Opening PHP tag
 
 $type     = 'mysql';                             // Type of database
-$server   = '10.37.183.174';                    // Server the database is on
+$server   = '192.185.2.183';                    // Server the database is on
 $db       = 'brandone_uri_gaming_club_database';     // Name of the database
 $port     = '3306';                           // Port is usually 3306 in Hostgator
 $charset  = 'utf8mb4';                       // UTF-8 encoding using 4 bytes of data per char
