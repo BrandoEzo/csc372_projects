@@ -1,0 +1,111 @@
+import Header from '../components/Header';
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
+import EBoard from '../components/EBoard';
+
+export default function HomePage() {
+  return (
+    <>
+      
+      <main>
+        <h1>URI Gaming Club</h1>
+        <p className="center">Welcome to the URI Gaming Club homepage!</p>
+
+        <div className="welcomeImages">
+          <img 
+            src="/images/20251210_191433.jpg" 
+            alt="Rhody the Ram playing Wii Sports" 
+            fetchPriority="high" 
+            width="640" 
+            height="480"
+          />
+          <img 
+            src="/images/20251210_195547.jpg" 
+            alt="Rhody the Ram playing Wii Sports" 
+            fetchPriority="high" 
+            width="640" 
+            height="480"
+          />
+        </div>
+        
+        <div className="all-content">
+          <div className="left-col">
+            <div className="card">
+              <h2>What is the URI Gaming Club?</h2>
+              <p>
+                We are an official URI Club focused on Video Games, Board Games, Card Games, and more! Our club provides a space
+                for students to hang out during the day, frequented by both on campus students and commuters alike. We host multiple
+                different types of events throughout the year, including weekly tournaments and game nights, <em>Dungeons & Dragons</em> games,
+                and larger events where we partner with other URI Clubs, Student Involvement, The Ram's Den, and more! All are welcome
+                casual gamers, to tabletop card game fanatics, to competitive esports tryhards!
+              </p>
+            </div>
+
+            <div className="card">
+              <h2>Where are we located and what do we have?</h2>
+              <p>
+                We are located in room 312A of the URI Memorial Union, and host events out of the club room, room 360 across the hall,
+                and occasionally the Ballroom, Atriums 1 and 2, and the Ram's Den, all located within the URI Memorial Union. We have several
+                video game consoles, including two <em>Nintendo Switch</em> systems, a <em>Playstation 4</em>, an <em>Xbox 360</em>, several 
+                modded <em>Wii</em> consoles full of og <em>Nintendo</em> games, a PC, plus lots of retro consoles that may or may not work fully. 
+                Also, the club room has a full shelf of board, card and tabletop games, ranging from <em>Apples to Apples</em> and <em>Sorry</em> to 
+            <em>Settlers of Catan</em>, <em>Risk</em>, and even more complicated games that nobody has ever heard of!
+              </p>
+            </div>
+
+            <div className="card">
+              <h2>Meetings and Events</h2>
+              <p>
+                Unlike most clubs, URI Gaming Club does not have traditional weekly or monthly meetings. We typically have one meeting
+                at the beginning of the school year, focused on introducing the club to new members and laying the ground rules. Often
+                we will start the semester with a casual game night where people can come and meet new friends and try out some of the wacky
+                games we have, followed by the start of our weekly tournament series, <b>URI Rhody Rumble!</b> Our mainstay game is <em>Super
+                Smash Bros. Ultimate</em>, where we are one of Rhode Island's premiere locals! We run a rotating cast of side games depending
+                on where interest lies, including <em>Street Fighter 6</em>, <em>Rivals of Aether 2</em>, <em>Super Smash Bros Melee</em>, 
+                <em>Guilty Gear: Strive</em>, <em>Tekken 8</em> and more! These tournaments are free to enter, and the winner of the main 
+                <em>Super Smash Bros. Ultimate</em> bracket gets a $5 Dunkin Donuts Gift Card! We also host monthly paid brackets, <b>URI 
+                Rhody Ruckus Monthly</b>, typically featuring singles and doubles for several games. This semester we will begin hosting 
+                weekly game nights on Thursday for other games that people want to get together and play without the competitive nature 
+                of the tournaments. Further events will be announced on this site and our Discord server.  
+              </p>
+            </div>
+
+            <div className="card">
+              <h2>How to join</h2>
+              <p>
+                We have no official signups for Gaming Club, but we recommend anyone interested in our events joins our Discord server,
+                linked in the connections section of this page. There we post updates, announcements, event signups, and even whether the 
+                room is open or closed for the day.
+              </p>
+            </div>
+          </div>
+
+          <div className="right-col">
+            <div className="interestCard">
+              <h3>Interested in joining the club?</h3>
+              <h5 id="uri_weekly">Currently interested:</h5>
+              <img 
+                className="interestImage" 
+                src="/images/interested_question_button.png" 
+                alt="interested"
+              />
+            </div>
+
+            <div className="card">
+              <h3>Connect with us!</h3>
+              <ul>
+                <li><a href="https://discord.gg/Ad5kMyEX82" target="_blank" rel="noopener noreferrer">URI Gaming Club Discord Server</a></li>
+                <li><a href="https://x.com/smash_uri" target="_blank" rel="noopener noreferrer">URI Smash Bros Twitter Account</a></li>
+                <li><a href="https://www.youtube.com/@HowlingRI" target="_blank" rel="noopener noreferrer">RI Super Smash Bros Youtube Channel</a></li>
+                <li><a href="https://events.uri.edu/group/gaming_club" target="_blank" rel="noopener noreferrer">URI Gaming Club Rhody Connect Page</a></li>
+              </ul>
+            </div>
+
+            <EBoard />
+          </div>
+        </div>
+      </main>
+
+    </>
+  );
+}
