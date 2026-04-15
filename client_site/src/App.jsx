@@ -15,7 +15,7 @@ import Home from "../pages/homepage.jsx";
 import Events from "../pages/events.jsx";
 import Feedback from "../pages/form.jsx";
 import Calendar from "../pages/calendar.jsx";
-import NotFound from "../pages/NotFound.jsx"
+import NotFound from "../pages/notFound.jsx"
 
 export default function App() {
   return (
