@@ -37,7 +37,7 @@
 				<a class="link" href="homepage.html">Home</a>
                 <a class="active" href="eventsPage.php">Events</a>
                 <a class="link" href="calendar.html">Calendar</a>
-                <a class="link" href="interestForm.php">Feedback Form</a>
+                <a class="link" href="interestForm.php">Feedback</a>
 			</div>
 		</div>
     <main role="main">

@@ -190,7 +190,7 @@
             <a class="link" href="homepage.html">Home</a>
             <a class="link" href="eventsPage.php">Events</a>
             <a class="link" href="calendar.html">Calendar</a>
-            <a class="active" href="feedbackForm.php">Feedback Form</a>
+            <a class="active" href="feedbackForm.php">Feedback</a>
         </div>
     </div>
     <main role="main">

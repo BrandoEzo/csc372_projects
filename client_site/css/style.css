@@ -55,12 +55,13 @@ div.welcomeImages img {
 
 /*div elements for header, left align, and individual sections */
 div.header{
-  overflow:hidden;
+  display: flex;
+  align-items: center;
   background: #011c46;
   padding: 5px;
+  border-radius: 25px;
 }
 .header a{
-  float: left;
   color:#ffd500;
   font-family:verdana;
   font-size:18px;
@@ -77,8 +78,8 @@ a.active {
   background-color: rgb(255, 238, 0);
 }
 div.header-right{
-  float:right;
-  margin:12px;
+  margin-left: auto;
+  margin-right: 12px;
 }
 
 div.all-content{
@@ -113,12 +114,14 @@ div.card{
   background-color:rgb(144, 153, 195);
   padding:20px;
   margin:20px;
+  border-radius: 25px;
 }
 
 div.special{
   background-color:rgb(190, 144, 195);
   padding:20px;
   margin:20px;
+  border-radius: 25px;
 }
 
 /* Responsive iframe container */
@@ -143,6 +146,7 @@ div.interestCard{
   background-color:rgb(144, 153, 195);
   padding:20px;
   margin:20px;
+  border-radius: 25px;
 }
 
 .interestImage {
@@ -191,6 +195,7 @@ div.interestCard{
   div.card{
     padding: 15px;
     margin: 15px 10px;
+    border-radius: 25px;
   }
   
 
@@ -198,8 +203,12 @@ div.interestCard{
 
 /*for small screens*/
 @media only screen and (max-width: 600px) {
+  div.header{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   div.header a {
-    float:none;
     display:block;
     text-align: left;
     padding: 8px;
@@ -207,7 +216,8 @@ div.interestCard{
   }
 
   div.header-right{
-    float:none;
+    margin-left: 0;
+    margin-top: 10px;
   }
 
   div.left-col{
@@ -236,6 +246,7 @@ div.interestCard{
     padding: 10px;
     margin: 10px 5px;
     font-size: 16px;
+    border-radius: 25px;
   }
   
   h1 {
