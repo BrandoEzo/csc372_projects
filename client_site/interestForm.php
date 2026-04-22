@@ -218,16 +218,20 @@
                 <p>Are you currently a URI Student?</p>
                 <input type="radio" id="yes" name="student" value="Yes" <?php if($responses["student"] == "Yes") echo "checked"; ?>>
                 <label for="yes">Yes</label><br>
+                <br>
                 <input type="radio" id="no" name="student" value="No" <?php if($responses["student"] == "No") echo "checked"; ?>>
                 <label for="no">No</label><br>
                 <br>
                 <p>What events are you interested in?</p>
                 <input type="checkbox" id="tournament" name="event" value="tournament" <?php if(is_array($responses["event"]) && in_array("tournament", $responses["event"])) echo "checked"; ?>>
                 <label for="tournament">Competitive Tournaments (Weekly or Monthly)</label><br>
+                <br>
                 <input type="checkbox" id="gameNight" name="event" value="gameNight" <?php if(is_array($responses["event"]) && in_array("gameNight", $responses["event"])) echo "checked"; ?>>
                 <label for="gameNight">Weekly Game Night</label><br>
+                <br>
                 <input type="checkbox" id="room" name="event" value="room" <?php if(is_array($responses["event"]) && in_array("room", $responses["event"])) echo "checked"; ?>>
                 <label for="room">Just Hanging Out In The Club Room</label><br>
+                <br>
                 <input type="checkbox" id="other" name="event" value="other" <?php if(is_array($responses["event"]) && in_array("other", $responses["event"])) echo "checked"; ?>>
                 <label for="other">Other</label><br>
                 <br>
