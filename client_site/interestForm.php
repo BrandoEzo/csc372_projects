@@ -172,10 +172,12 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="interest form for URI Gaming Club to gather feedback and gauge interest in different types of events.">
+    <meta charset="UTF-8">
     <title>URI Gaming Club Feedback Form</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -191,7 +193,7 @@
             <a class="active" href="feedbackForm.php">Feedback Form</a>
         </div>
     </div>
-
+    <main role="main">
     <h1>URI Gaming Club Feedback Form</h1>
     <p class="center">We'd love to hear your thoughts about our club! Please fill out the form below:</p>
     <div class="left-col">
@@ -234,6 +236,7 @@
                 <br>
                 <input type="submit" name="submit" value="Submit">
             </form>
+            <br>
             <form action="" method="POST" style="display:inline;">
                 <input type="submit" name="clear" value="Clear Session">
             </form>
@@ -249,5 +252,6 @@
             </form>
         </div>
     </div>
+    </main>
   </body>
 </html>

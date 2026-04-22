@@ -5,7 +5,7 @@
 // get event buttons after DOM loads
 document.addEventListener('DOMContentLoaded', function() {
     var interestedCard = document.querySelector('.interestCard');
-    var header = interestedCard.querySelector('h5');
+    var header = interestedCard.querySelector('p');
     var image = interestedCard.querySelector('.interestImage');
 
     // number of players interested in the event 

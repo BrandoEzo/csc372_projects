@@ -2,10 +2,12 @@
 an API call from Start.gg to directly pull our events on there and allow users to link directly to the tournament bracket page-->
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="calendar page for URI Gaming Club, listing all upcoming events on the Google Calendar and results for past events.">
+    <meta charset="UTF-8">
     <title>URI Gaming Club Calendar</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -20,20 +22,24 @@ an API call from Start.gg to directly pull our events on there and allow users t
                 <a class="link" href="interestForm.php">Feedback Form</a>
 			</div>
 		</div>
-
+    <main role="main">
     <h1>URI Gaming Club Calendar</h1>
     <div class="center-col">
       <p class="center">Welcome to the URI Gaming Club Calendar! View our upcoming events!</p>
       <div class="card">
+        <h2>Calendar</h2>
         <div class="iframe-container">
-          <iframe src="https://calendar.google.com/calendar/embed?src=c_9ccdde5bfcfcd22d796b1c739696eaf16c5ddffcef45b6beb55b5fb6c8998507%40group.calendar.google.com&ctz=UTC" frameborder="0" scrolling="no"></iframe>
+          <iframe title="calendar" src="https://calendar.google.com/calendar/embed?src=c_9ccdde5bfcfcd22d796b1c739696eaf16c5ddffcef45b6beb55b5fb6c8998507%40group.calendar.google.com&ctz=UTC" frameborder="0" scrolling="no"></iframe>
         </div>
       </div>
       <div class="card">
-        <h3>Previous Tournament Results</h3>
+        <h3>Previous <em>Super Smash Bros Ultimate</em> Tournament Results</h3>
         <label for="tournamentSelect">Select a tournament:</label>
         <select id="tournamentSelect">
           <option value="">-- Choose a tournament --</option>
+          <option value="uri-rhody-rumble-83">URI Rhody Rumble 83</option>
+          <option value="uri-rhody-rumble-82">URI Rhody Rumble 82</option>
+          <option value="uri-rhody-rumble-81">URI Rhody Rumble 81</option>
           <option value="uri-rhody-rumble-80">URI Rhody Rumble 80</option>
           <option value="uri-rhody-rumble-79">URI Rhody Rumble 79</option>
           <option value="uri-rhody-rumble-78">URI Rhody Rumble 78</option>
@@ -59,6 +65,7 @@ an API call from Start.gg to directly pull our events on there and allow users t
         </ul>
       </div>
     </div>
+    </main>
     <script src="js/startgg-api.js"></script>
 </body>
 </html>

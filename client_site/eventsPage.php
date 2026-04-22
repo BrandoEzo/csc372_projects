@@ -20,10 +20,12 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="event page for URI Gaming Club, listing all upcoming events and their details.">
+    <meta charset="UTF-8">
     <title>URI Gaming Club Events</title>
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -38,7 +40,7 @@
                 <a class="link" href="interestForm.php">Feedback Form</a>
 			</div>
 		</div>
-
+    <main role="main">
     <h1>URI Gaming Club Events Page</h1>
     <p class="center">Welcome to the URI Gaming Club Events Page!</p>
     
@@ -53,9 +55,9 @@
                 <h2>
                     <?= $event['name'] ?> 
                 </h2>
-                <h4>
+                <h3>
                     <?= $event['special'] == 1 ? "<em>Special Event</em>" : "<em>Weekly Event</em>" ?>
-                </h4>
+                </h3>
                 <p>
                     <?= $event['description'] ?>
                 </p>
@@ -73,5 +75,5 @@
                 </ul>
                 </div>
         <?php endforeach; ?>
-    
+    </main>
 </html>
