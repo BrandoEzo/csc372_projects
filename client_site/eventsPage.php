@@ -24,7 +24,7 @@
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="event page for URI Gaming Club, listing all upcoming events and their details.">
+    <meta name="description" content="Event page for URI Gaming Club, listing all upcoming events and their details.">
     <meta charset="UTF-8">
     <title>URI Gaming Club Events</title>
     <link rel="stylesheet" href="css/style.css">
