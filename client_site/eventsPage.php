@@ -1,5 +1,6 @@
 <?php 
     include 'php/database-connection.php';//this is commented out for now until I am on anything but school wifi
+    include 'php/navbar.php';
     function get_events(PDO $pdo) {
 		                                                    // SQL query to retrieve event information based on the event ID
 		$sql = "SELECT * 
@@ -31,15 +32,7 @@
   </head>
   <body>  
     <!--Nav Bar-->
-    <div class="header">
-			<a class="link" href="homepage.html"><img id="logo" src="images/logo.png" alt="URI Gaming Club Logo" fetchpriority="high" width="192" height="108"></a>
-			<div class="header-right" >
-				<a class="link" href="homepage.html">Home</a>
-                <a class="active" href="eventsPage.php">Events</a>
-                <a class="link" href="calendar.html">Calendar</a>
-                <a class="link" href="interestForm.php">Feedback</a>
-			</div>
-		</div>
+    <?php navBar("eventsPage"); ?>
     <main role="main">
     <h1>URI Gaming Club Events Page</h1>
     <p class="center">Welcome to the URI Gaming Club Events Page!</p>

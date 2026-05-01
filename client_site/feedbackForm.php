@@ -4,7 +4,7 @@
     session_start();
     include 'php/validateForm.php';
     include 'php/database-connection.php'; //this is commented out for now until I am on anything but school wifi
-    
+    include 'php/navbar.php';
     //function to check whether an email already exists in the database, returns true if email exists and false if it doesn't
     function check_data(PDO $pdo, $email){
         $sql = "SELECT email FROM Feedback WHERE email = :email";
@@ -184,15 +184,7 @@
   <body>
   
     <!--Nav Bar-->
-    <div class="header">
-		<a class="link" href="homepage.html"><img id="logo" src="images/logo.png" alt="URI Gaming Club Logo" fetchpriority="high" width="192" height="108"></a>
-		<div class="header-right" >
-            <a class="link" href="homepage.html">Home</a>
-            <a class="link" href="eventsPage.php">Events</a>
-            <a class="link" href="calendar.html">Calendar</a>
-            <a class="active" href="feedbackForm.php">Feedback</a>
-        </div>
-    </div>
+    <?php navBar("interestForm"); ?>
     <main role="main">
     <h1>URI Gaming Club Feedback Form</h1>
     <p class="center">We'd love to hear your thoughts about our club! Please fill out the form below:</p>

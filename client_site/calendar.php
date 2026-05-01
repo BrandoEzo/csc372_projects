@@ -1,0 +1,65 @@
+<!--Brandon Ezovski, 2/13/2026: Calendar page with integrated google calendar featuring our important events. This page also features
+an API call from Start.gg to directly pull our events on there and allow users to link directly to the tournament bracket page-->
+<?php include 'php/navbar.php';?>
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calendar page for URI Gaming Club, listing all upcoming events on the Google Calendar and results for past events.">
+    <meta charset="UTF-8">
+    <title>URI Gaming Club Calendar</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>  
+    <!--Nav Bar-->
+    <?php navBar("calendar"); ?>
+    <main role="main">
+    <h1>URI Gaming Club Calendar</h1>
+    <div class="center-col">
+      <p class="center">Welcome to the URI Gaming Club Calendar! View our upcoming events!</p>
+      <div class="card">
+        <h2>Calendar</h2>
+        <div class="iframe-container">
+          <iframe title="calendar" src="https://calendar.google.com/calendar/embed?src=c_9ccdde5bfcfcd22d796b1c739696eaf16c5ddffcef45b6beb55b5fb6c8998507%40group.calendar.google.com&ctz=UTC" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Previous <em>Super Smash Bros Ultimate</em> Tournament Results</h3>
+        <label for="tournamentSelect">Select a tournament:</label>
+        <select id="tournamentSelect">
+          <option value="">-- Choose a tournament --</option>
+          <option value="uri-rhody-rumble-84">URI Rhody Rumble 84</option>
+          <option value="uri-rhody-rumble-83">URI Rhody Rumble 83</option>
+          <option value="uri-rhody-rumble-82">URI Rhody Rumble 82</option>
+          <option value="uri-rhody-rumble-81">URI Rhody Rumble 81</option>
+          <option value="uri-rhody-rumble-80">URI Rhody Rumble 80</option>
+          <option value="uri-rhody-rumble-79">URI Rhody Rumble 79</option>
+          <option value="uri-rhody-rumble-78">URI Rhody Rumble 78</option>
+          <option value="uri-rhody-rumble-77">URI Rhody Rumble 77</option>
+          <option value="uri-rhody-rumble-76">URI Rhody Rumble 76</option>
+          <option value="uri-rhody-rumble-75">URI Rhody Rumble 75</option>
+          <option value="uri-rhody-rumble-74">URI Rhody Rumble 74</option>
+          <option value="uri-rhody-rumble-73">URI Rhody Rumble 73</option>
+          <option value="uri-rhody-rumble-72">URI Rhody Rumble 72</option>
+          <option value="uri-rhody-rumble-71">URI Rhody Rumble 71</option>
+          <option value="uri-rhody-rumble-70">URI Rhody Rumble 70</option>
+          <option value="uri-rhody-rumble-69">URI Rhody Rumble 69</option>
+          <option value="uri-rhody-rumble-68">URI Rhody Rumble 68</option>
+          <option value="uri-rhody-rumble-67">URI Rhody Rumble 67</option>
+          <option value="uri-rhody-rumble-66-1">URI Rhody Rumble 66</option>
+          <option value="uri-rhody-rumble-65">URI Rhody Rumble 65</option>
+          <option value="uri-rhody-rumble-64">URI Rhody Rumble 64</option>
+          <option value="uri-rhody-rumble-63">URI Rhody Rumble 63</option>
+          <option value="uri-rhody-rumble-62">URI Rhody Rumble 62</option>
+          <option value="uri-rhody-rumble-61">URI Rhody Rumble 61</option>
+        </select>
+        <ul id="tournamentResults" style="display: none;">
+        </ul>
+      </div>
+    </div>
+    </main>
+    <script src="js/startgg-api.js"></script>
+</body>
+</html>
